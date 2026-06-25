@@ -105,7 +105,7 @@ examples/
   Public-facing .rbl example programs
 
 docs/
-  Language reference and grammar notes
+  Language reference (docs/language_reference.md) and grammar notes
 
 interpreter/
   Lexer, parser, token model, CLI entry point, and example runner
