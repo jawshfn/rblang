@@ -24,10 +24,10 @@ is inspired by Ruby syntax, but it is not a full Ruby interpreter.
 Example source:
 
 ```ruby
-x = 5
-print x + x * x
-x = 999
-print x
+total = 8
+print total + total * 3
+total = 41
+print total
 ```
 
 Run it with:
@@ -39,8 +39,8 @@ ruby interpreter/main.rb examples/variables.rbl
 Output:
 
 ```text
-30
-999
+32
+41
 Block result: nil
 ```
 

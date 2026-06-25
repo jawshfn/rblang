@@ -42,49 +42,49 @@ end
 run_program(
   'Arithmetic: addition',
   <<~BOX
-    print 5 + 2
+    print 12 + 4
   BOX
 )
 
 run_program(
   'Arithmetic: precedence',
   <<~BOX
-    print 10 * 6 - 10 % 4
+    print 14 * 3 - 16 % 5
   BOX
 )
 
 run_program(
   'Arithmetic: parentheses',
   <<~BOX
-    print (5 + 2) * 3 % 4
+    print (8 + 4) * 5 % 7
   BOX
 )
 
 run_program(
   'Arithmetic: bitwise not',
   <<~BOX
-    print ~6
+    print ~11
   BOX
 )
 
 run_program(
   'Arithmetic: exponentiation',
   <<~BOX
-    print 2 ** 9
+    print 3 ** 5
   BOX
 )
 
 run_program(
   'Arithmetic: bitwise and with negation',
   <<~BOX
-    print 45 & ---(1 + 3)
+    print 52 & ---(2 + 5)
   BOX
 )
 
 run_program(
   'Expression result: left shift',
   <<~BOX
-    9 << 1
+    6 << 2
   BOX
 )
 
@@ -92,28 +92,28 @@ run_program(
 run_program(
   'Logic: comparison',
   <<~BOX
-    print 8 >= 7 + 1
+    print 14 >= 9 + 5
   BOX
 )
 
 run_program(
   'Logic: repeated not',
   <<~BOX
-    print !!!!false
+    print !!!!!true
   BOX
 )
 
 run_program(
   'Logic: or',
   <<~BOX
-    print true || !false
+    print false || !false
   BOX
 )
 
 run_program(
   'Logic: and with grouping',
   <<~BOX
-    print (5 > 3) && !(2 > 8)
+    print (9 > 4) && !(3 > 12)
   BOX
 )
 
@@ -121,10 +121,10 @@ run_program(
 run_program(
   'Variables and reassignment',
   <<~BOX
-    x = 5
-    print x + x * x
-    x = 999
-    print x
+    total = 8
+    print total + total * 3
+    total = 41
+    print total
   BOX
 )
 
@@ -132,33 +132,33 @@ run_program(
 run_program(
   'Parser error: missing closing parenthesis',
   <<~BOX
-    print (5 + 2
+    print (12 + 4
   BOX
 )
 
 run_program(
   'Parser error: incomplete expression',
   <<~BOX
-    x = 7 +
+    score = 10 *
   BOX
 )
 
 run_program(
   'Lexer error: unterminated string',
-  "print \"unterminated\n"
+  "print \"open string\n"
 )
 
 run_program(
   'Casting demo',
 <<~BOX
-  print float(7) / 2
-  print int(3.9)
+  print float(11) / 4
+  print int(8.6)
   BOX
 )
 
 run_program(
   'Runtime error: undeclared variable',
   <<~BOX
-    print slar
+    print missing_value
   BOX
 )

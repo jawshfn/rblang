@@ -10,7 +10,7 @@ class CliTest < Minitest::Test
     assert status.success?, stderr
     assert_empty stderr
 
-    ['7', '58', '1', '512', '44', 'Block result: nil'].each do |expected|
+    ['16', '41', '4', '243', '48', 'Block result: nil'].each do |expected|
       assert_includes stdout, expected
     end
   end
@@ -74,7 +74,7 @@ class CliTest < Minitest::Test
     assert_includes stdout, 'Tokens:'
     assert_includes stdout, 'Token(:print, "print"'
     assert_includes stdout, 'Translation:'
-    assert_includes stdout, 'puts (5 + 2)'
+    assert_includes stdout, 'puts (12 + 4)'
     assert_includes stdout, 'Block result: nil'
   end
 end

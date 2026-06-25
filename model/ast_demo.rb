@@ -59,15 +59,15 @@ end
 tree1 = Modulo.new(
   Add.new(
     Multiply.new(
-      IntegerPrimitive.new(7),
-      IntegerPrimitive.new(4)
+      IntegerPrimitive.new(9),
+      IntegerPrimitive.new(5)
     ),
-    IntegerPrimitive.new(3)
+    IntegerPrimitive.new(8)
   ),
-  IntegerPrimitive.new(12)
+  IntegerPrimitive.new(11)
 )
 
-show_expression('Arithmetic: (7 * 4 + 3) % 12', tree1)
+show_expression('Arithmetic: (9 * 5 + 8) % 11', tree1)
 
 tree2 = Multiply.new(
   Rvalue.new('a'),
@@ -75,110 +75,110 @@ tree2 = Multiply.new(
 )
 
 show_expression('Arithmetic negation and rvalues: a * (-b)', tree2) do |runtime|
-  runtime.set('a', IntegerPrimitive.new(6))
-  runtime.set('b', IntegerPrimitive.new(7))
+  runtime.set('a', IntegerPrimitive.new(4))
+  runtime.set('b', IntegerPrimitive.new(13))
 end
 
 tree3 = LeftShift.new(
   Rvalue.new('i'),
-  IntegerPrimitive.new(3)
+  IntegerPrimitive.new(2)
 )
 
-show_expression('Rvalue lookup and shift: i << 3', tree3) do |runtime|
-  runtime.set('i', IntegerPrimitive.new(5))
+show_expression('Rvalue lookup and shift: i << 2', tree3) do |runtime|
+  runtime.set('i', IntegerPrimitive.new(6))
 end
 
 tree4 = Equals.new(
   Rvalue.new('j'),
   Add.new(
     Rvalue.new('j'),
-    IntegerPrimitive.new(0)
+    IntegerPrimitive.new(2)
   )
 )
 
-show_expression('Rvalue lookup and comparison: j == j + 0', tree4) do |runtime|
-  runtime.set('j', IntegerPrimitive.new(11))
+show_expression('Rvalue lookup and comparison: j == j + 2', tree4) do |runtime|
+  runtime.set('j', IntegerPrimitive.new(14))
 end
 
 tree5 = LogicalNot.new(
   GreaterThan.new(
-    FloatPrimitive.new(3.3),
-    FloatPrimitive.new(3.2)
+    FloatPrimitive.new(5.4),
+    FloatPrimitive.new(5.9)
   )
 )
 
-show_expression('Logic and comparison: !(3.3 > 3.2)', tree5)
+show_expression('Logic and comparison: !(5.4 > 5.9)', tree5)
 
 tree6 = Negate.new(
   Negate.new(
     Multiply.new(
-      IntegerPrimitive.new(6),
-      IntegerPrimitive.new(8)
+      IntegerPrimitive.new(7),
+      IntegerPrimitive.new(9)
     )
   )
 )
 
-show_expression('Double negation: --(6 * 8)', tree6)
+show_expression('Double negation: --(7 * 9)', tree6)
 
 tree7 = BitwiseOr.new(
-  BitwiseNot.new(IntegerPrimitive.new(5)),
-  BitwiseNot.new(IntegerPrimitive.new(8))
+  BitwiseNot.new(IntegerPrimitive.new(10)),
+  BitwiseNot.new(IntegerPrimitive.new(12))
 )
 
-show_expression('Bitwise operations: ~5 | ~8', tree7)
+show_expression('Bitwise operations: ~10 | ~12', tree7)
 
 tree8 = Divide.new(
-  IntToFloat.new(IntegerPrimitive.new(7)),
-  IntegerPrimitive.new(2)
+  IntToFloat.new(IntegerPrimitive.new(11)),
+  IntegerPrimitive.new(4)
 )
 
-show_expression('Casting: int-to-float(7) / 2', tree8)
+show_expression('Casting: int-to-float(11) / 4', tree8)
 
 tree9 = Assignment.new(
-  'n',
+  'mask',
   BitwiseAnd.new(
-    IntegerPrimitive.new(9),
-    IntegerPrimitive.new(3)
+    IntegerPrimitive.new(14),
+    IntegerPrimitive.new(6)
   )
 )
 
-show_expression('Assignment: n = 9 & 3', tree9)
+show_expression('Assignment: mask = 14 & 6', tree9)
 
 # --------------------------------------------------
 # Program demos
 # --------------------------------------------------
 
 program1 = Block.new([
-  Assignment.new('x', IntegerPrimitive.new(17)),
-  Print.new(Rvalue.new('x'))
+  Assignment.new('score', IntegerPrimitive.new(24)),
+  Print.new(Rvalue.new('score'))
 ])
 
 show_program('Assignment demo', program1)
 
 program2 = Block.new([
-  Assignment.new('n', IntegerPrimitive.new(18)),
+  Assignment.new('value', IntegerPrimitive.new(21)),
   Print.new(
     LessThanOrEqual.new(
-      Rvalue.new('n'),
-      IntegerPrimitive.new(18)
+      Rvalue.new('value'),
+      IntegerPrimitive.new(25)
     )
   ),
   Print.new(
     LogicalAnd.new(
       LessThanOrEqual.new(
-        IntegerPrimitive.new(13),
-        Rvalue.new('n')
+        IntegerPrimitive.new(20),
+        Rvalue.new('value')
       ),
       LessThanOrEqual.new(
-        Rvalue.new('n'),
-        IntegerPrimitive.new(16)
+        Rvalue.new('value'),
+        IntegerPrimitive.new(34)
       )
     )
   ),
   Print.new(
     Negate.new(
       Exponentiate.new(
-        Rvalue.new('n'),
+        Rvalue.new('value'),
         IntegerPrimitive.new(2)
       )
     )
@@ -192,22 +192,22 @@ show_program('Logic and arithmetic demo', program2)
 # --------------------------------------------------
 
 bad_tree1 = LeftShift.new(
-  FloatPrimitive.new(7.5),
-  IntegerPrimitive.new(2)
-)
-
-show_error('Type error: 7.5 << 2', bad_tree1)
-
-bad_tree2 = GreaterThanOrEqual.new(
-  BooleanPrimitive.new(true),
-  IntegerPrimitive.new(10)
-)
-
-show_error('Type error: true >= 10', bad_tree2)
-
-bad_tree3 = Divide.new(
-  StringPrimitive.new('fooo'),
+  FloatPrimitive.new(6.25),
   IntegerPrimitive.new(3)
 )
 
-show_error('Type error: "fooo" / 3', bad_tree3)
+show_error('Type error: 6.25 << 3', bad_tree1)
+
+bad_tree2 = GreaterThanOrEqual.new(
+  BooleanPrimitive.new(true),
+  IntegerPrimitive.new(4)
+)
+
+show_error('Type error: true >= 4', bad_tree2)
+
+bad_tree3 = Divide.new(
+  StringPrimitive.new('sample'),
+  IntegerPrimitive.new(5)
+)
+
+show_error('Type error: "sample" / 5', bad_tree3)

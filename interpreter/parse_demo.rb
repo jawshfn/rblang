@@ -5,7 +5,7 @@ require_relative '../model/runtime'
 require_relative '../model/evaluator'
 
 source = <<~BOX
-  print 1 < 2 < 3
+  print (4 < 9) && !(12 < 6)
 BOX
 
 tokens = Lexer.new(source).lex
