@@ -87,6 +87,16 @@ ruby interpreter/run_examples.rb
 
 The example runner prints each filename before executing it.
 
+## Run Tests
+
+Run the automated test suite:
+
+```bash
+ruby tests/run_all_tests.rb
+```
+
+The GitHub Actions workflow runs the same Minitest suite on push and pull request.
+
 ## Project Structure
 
 ```text
@@ -101,6 +111,9 @@ interpreter/
 
 model/
   AST/model nodes, runtime environment, evaluator, translator, and AST demos
+
+tests/
+  Minitest coverage for the CLI, lexer, and evaluator pipeline
 ```
 
 ## Language Support
