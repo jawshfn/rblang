@@ -59,6 +59,18 @@ ruby interpreter/main.rb examples/variables.rbl
 ruby interpreter/main.rb examples/logic_and_casts.rbl
 ```
 
+Print diagnostic output from the interpreter pipeline:
+
+```bash
+ruby interpreter/main.rb examples/arithmetic.rbl --tokens --translate
+```
+
+Available CLI options:
+
+- `--tokens`: print the token stream before evaluation
+- `--translate`: print translated Ruby-like/Ruby output before evaluation
+- `--help`: print usage and available options
+
 If no file is provided, the CLI prints a usage message:
 
 ```bash
