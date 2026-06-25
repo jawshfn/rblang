@@ -1,5 +1,7 @@
 # RBLang
 
+[![RBLang CI](https://github.com/jawshfn/rblang/actions/workflows/ruby.yml/badge.svg)](https://github.com/jawshfn/rblang/actions/workflows/ruby.yml)
+
 RBLang is a small Ruby-like interpreter written in Ruby. It implements an
 expression-oriented language with a lexer, recursive-descent parser, AST/model
 nodes, runtime environment, evaluator, and translator.
@@ -88,6 +90,11 @@ ruby interpreter/run_examples.rb
 
 The example runner prints each filename before executing it.
 
+## Documentation
+
+- [docs/language_reference.md](docs/language_reference.md): practical guide to writing RBLang programs
+- [docs/grammar_notes.md](docs/grammar_notes.md): grammar-oriented notes for parser/syntax structure
+
 ## Run Tests
 
 Run the automated test suite:
@@ -119,21 +126,12 @@ tests/
 
 ## Language Support
 
-The current language supports:
+The current language supports literals, variables, assignment, `print`
+statements, comments, arithmetic, comparison, logical and bitwise operators,
+numeric casts, grouped expressions, and multi-statement programs.
 
-- Integer, float, boolean, string, and null literals
-- Variables and assignment
-- `print` statements
-- Multi-statement programs separated by newlines
-- Single-line comments beginning with `#`
-- Parenthesized expressions
-- Arithmetic operators: `+`, `-`, `*`, `/`, `%`, `**`
-- Unary numeric negation: `-`
-- Relational operators: `<`, `<=`, `>`, `>=`
-- Equality operators: `==`, `!=`
-- Logical operators: `!`, `&&`, `||`
-- Bitwise operators: `~`, `&`, `|`, `^`, `<<`, `>>`
-- Numeric casts: `int(...)`, `float(...)`
+For syntax details and runnable examples, see
+[docs/language_reference.md](docs/language_reference.md).
 
 ## Limitations
 
@@ -145,9 +143,6 @@ The current language supports:
 - The project is not intended to be production-ready.
 
 ## Development Notes
-
-This project is a standalone educational interpreter inspired by Ruby syntax. It
-focuses on the interpreter pipeline rather than full Ruby compatibility.
 
 The core execution path is:
 
