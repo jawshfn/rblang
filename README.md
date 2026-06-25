@@ -11,12 +11,12 @@ is inspired by Ruby syntax, but it is not a full Ruby interpreter.
 
 ## Features
 
-- Lexical analysis with source-indexed tokens
+- Lexical analysis with token positions for error reporting
 - Recursive-descent parser with operator precedence
-- AST/model nodes for primitives, expressions, statements, and operations
+- AST node model for primitives, expressions, statements, and operations
 - Runtime environment for variable assignment and lookup
-- Visitor-based evaluator for executing parsed programs
-- Translator visitor that renders AST nodes as Ruby-like/Ruby code
+- Evaluator for running parsed programs
+- Translator for inspecting Ruby-like output from parsed AST nodes
 - File-based program execution from `.rbl` source files
 - Example runner for bundled sample programs
 - Error messages for malformed syntax, undeclared variables, and invalid operand types
@@ -46,6 +46,8 @@ Output:
 41
 Block result: nil
 ```
+
+`Block result: nil` is the final value of the evaluated program block.
 
 ## Run Locally
 
@@ -139,7 +141,7 @@ For syntax details and runnable examples, see
 - It supports a deliberately small syntax and runtime model.
 - It does not currently implement Ruby classes, methods, modules, arrays, hashes,
   blocks, loops, exceptions, or the Ruby standard library.
-- Error reporting is source-indexed, but intentionally lightweight.
+- Error reporting includes source positions, but remains intentionally lightweight.
 - The project is not intended to be production-ready.
 
 ## Development Notes
