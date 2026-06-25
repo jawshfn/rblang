@@ -48,11 +48,14 @@ unless File.file?(path)
 end
 
 begin
-  InterpreterRunner.run_file(
+  InterpreterRunner.run_file_for_cli(
     path,
     show_tokens: ARGV.include?('--tokens'),
     show_translation: ARGV.include?('--translate')
   )
+rescue InterpreterRunner::SourceError => e
+  warn InterpreterRunner.format_source_error(e)
+  exit 1
 rescue RuntimeError => e
   warn "Error: #{e.message}"
   exit 1

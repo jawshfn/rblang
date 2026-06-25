@@ -99,4 +99,45 @@ class CliTest < Minitest::Test
       assert_includes stdout, 'Block result: nil'
     end
   end
+
+  def test_cli_formats_parser_errors_with_caret
+    stdout, stderr, status = run_temp_source("print (12 + 4\n")
+
+    refute status.success?
+    assert_empty stdout
+    assert_includes stderr, "Parser error:\nExpected ) at index 13"
+    assert_includes stderr, "print (12 + 4\n             ^"
+  end
+
+  def test_cli_formats_lexer_errors_with_caret
+    stdout, stderr, status = run_temp_source("print \"unterminated\n")
+
+    refute status.success?
+    assert_empty stdout
+    assert_includes stderr, "Lexer error:\nunclosed string literal at index 6"
+    assert_includes stderr, "print \"unterminated\n      ^"
+  end
+
+  def test_cli_formats_runtime_errors_with_caret
+    stdout, stderr, status = run_temp_source("print missing_value\n")
+
+    refute status.success?
+    assert_empty stdout
+    assert_includes stderr, "Runtime error:\nundeclared variable \"missing_value\" at index 6"
+    assert_includes stderr, "print missing_value\n      ^"
+  end
+
+  private
+
+  def run_temp_source(source)
+    Tempfile.create(['rblang-error', '.rbl']) do |file|
+      file.write(source)
+      file.close
+
+      return run_ruby_script(
+        project_path('interpreter', 'main.rb'),
+        file.path
+      )
+    end
+  end
 end
