@@ -1,4 +1,4 @@
-# Grammar Notes
+# RBLang Grammar Notes
 
 These notes describe the small Ruby-like language parsed by this interpreter.
 They are intended as a reference for the current implementation, not as a claim

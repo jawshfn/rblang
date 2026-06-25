@@ -1,6 +1,6 @@
-# Ruby-Like Interpreter
+# RBLang
 
-A standalone Ruby-like interpreter written in Ruby. It implements a small
+RBLang is a small Ruby-like interpreter written in Ruby. It implements an
 expression-oriented language with a lexer, recursive-descent parser, AST/model
 nodes, runtime environment, evaluator, and translator.
 
