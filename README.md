@@ -24,6 +24,7 @@ is inspired by Ruby syntax, but it is not a full Ruby interpreter.
 Example source:
 
 ```ruby
+# calculate a total
 total = 8
 print total + total * 3
 total = 41
@@ -124,6 +125,7 @@ The current language supports:
 - Variables and assignment
 - `print` statements
 - Multi-statement programs separated by newlines
+- Single-line comments beginning with `#`
 - Parenthesized expressions
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`, `**`
 - Unary numeric negation: `-`

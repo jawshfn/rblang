@@ -4,6 +4,9 @@ These notes describe the small Ruby-like language parsed by this interpreter.
 They are intended as a reference for the current implementation, not as a claim
 of full Ruby compatibility.
 
+Comments begin with `#` and continue to the end of the line. The lexer ignores
+comment text while preserving newlines for statement separation.
+
 ```text
 program = block EOF
 

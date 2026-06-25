@@ -1,4 +1,5 @@
 require_relative 'test_helper'
+require 'tempfile'
 
 class CliTest < Minitest::Test
   def test_cli_runs_arithmetic_example
@@ -76,5 +77,26 @@ class CliTest < Minitest::Test
     assert_includes stdout, 'Translation:'
     assert_includes stdout, 'puts (12 + 4)'
     assert_includes stdout, 'Block result: nil'
+  end
+
+  def test_cli_runs_program_with_comments
+    Tempfile.create(['rblang-comments', '.rbl']) do |file|
+      file.write(<<~SOURCE)
+        # calculate a score
+        score = 12 + 4
+        print score # inline comment
+      SOURCE
+      file.close
+
+      stdout, stderr, status = run_ruby_script(
+        project_path('interpreter', 'main.rb'),
+        file.path
+      )
+
+      assert status.success?, stderr
+      assert_empty stderr
+      assert_includes stdout, "16\n"
+      assert_includes stdout, 'Block result: nil'
+    end
   end
 end

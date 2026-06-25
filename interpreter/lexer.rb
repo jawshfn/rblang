@@ -48,6 +48,8 @@ class Lexer
     @token_text = ''
     @token_start = 0
     @tokens = []
+    @line_has_token = false
+    @line_has_comment = false
   end
 
   # Lex scans the source left to right and emits tokens until EOF
@@ -55,10 +57,10 @@ class Lexer
     while !done?
       if has(" ") || has("\t") || has("\r")
         skip
+      elsif has("#")
+        skip_comment
       elsif has("\n")
-        start_token
-        capture
-        emit_token(:newline)
+        lex_newline
       elsif has_alpha || has("_")
         lex_identifier_or_keyword
       elsif has_digit
@@ -123,8 +125,27 @@ class Lexer
     @i += 1
   end
 
+  def skip_comment
+    @line_has_comment = true
+    skip until done? || has("\n")
+  end
+
   def emit_token(type)
     @tokens << Token.new(type, @token_text, @token_start, @i - 1)
+    @line_has_token = true unless type == :newline
+  end
+
+  def lex_newline
+    if @line_has_comment && !@line_has_token
+      skip
+    else
+      start_token
+      capture
+      emit_token(:newline)
+    end
+
+    @line_has_token = false
+    @line_has_comment = false
   end
 
   # Identifiers are lexed greedily, then checked against known keywords

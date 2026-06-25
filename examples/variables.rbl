@@ -1,4 +1,6 @@
+# calculate a total
 total = 8
 print total + total * 3
+# update the total
 total = 41
 print total
